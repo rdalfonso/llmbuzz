@@ -1,66 +1,44 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from './page.module.css';
+import News from './components/News/News';
 
-export default function Home() {
+interface SearchDocument {
+  id: string;
+  title: string;
+  link: string;
+  snippet?: string;
+  source?: string;
+  image?: string;
+  model?: string;
+  created_at?: string;
+}
+
+interface SearchResponse {
+  total: number;
+  count: number;
+  documents: SearchDocument[];
+}
+
+async function getInitialResults(): Promise<SearchResponse> {
+  console.log("Fetching initial results from API...");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SEARCH_API_ENDPOINT}?size=25`, {
+    next: { revalidate: 60 }, // cache for 60s, then revalidate in the background
+  });
+
+  if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+  return res.json();
+}
+
+export default async function HomePage() {
+  const initialData = await getInitialResults();
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className={styles.container}>
+      <div className={styles.page}>
+        <News
+          initialDocuments={initialData.documents}
+          initialTotal={initialData.total}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

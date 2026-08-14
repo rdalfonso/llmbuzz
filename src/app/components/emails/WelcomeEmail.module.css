@@ -1,0 +1,29 @@
+.body {
+    background-color: var(--color-ghost-white);
+    font-family: "Arial, sans-serif";
+}
+
+.container {
+    background-color: "#ffffff";
+    padding: "32px";
+    margin: "40px auto";
+    max-width: "600px";
+    border-radius: "8px";
+}
+
+.text {
+    font-family: 'sans-serif';
+    font-size: '16px'
+}
+
+.section {
+    margin: '24px 0';
+}
+
+.content {
+    background-color: var(--color-ghost-white);
+    color: "#fff", ;
+    padding: "12px 20px";
+    border-radius: "6px";
+    text-decoration: "none";
+}

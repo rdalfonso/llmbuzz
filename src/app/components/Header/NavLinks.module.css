@@ -1,0 +1,11 @@
+.icons {
+    display: none;
+}
+
+@media (min-width: 760px) {
+    .icons {
+        display: flex;
+        align-items: center;
+        gap: var(--space-16);
+    }
+}

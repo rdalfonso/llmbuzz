@@ -1,0 +1,104 @@
+.header {
+    width: 100%;
+    max-width: 1420px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    min-height: 60px;
+    border: 1px solid var(--color-gray-300);
+    background-color: var(--color-header-bg);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-800);
+}
+
+@media (min-width: 760px) {
+    .logo {
+        font-size: var(--font-size-xl);
+    }
+}
+
+.svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: var(--space-8);
+    padding-top: var(--space-8);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+}
+
+.loginButton,
+.signupButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: var(--space-14) var(--space-24);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semi-bold);
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease;
+    text-decoration: none;
+    border: var(--space-1) solid;
+}
+
+.loginButton {
+    border-color: var(--color-green-500);
+    color: var(--color-white);
+    background-color: var(--color-green-500);
+}
+
+.loginButton:hover {
+    color: var(--color-white);
+    background-color: var(--color-green-600);
+}
+
+.signupButton {
+    border-color: var(--color-gray-500);
+    background-color: var(--color-white);
+    color: var(--color-gray-800);
+    margin-left: 24px;
+}
+
+.signupButton:hover {
+    border-color: var(--color-green-600);
+    background-color: var(--color-green-600);
+    color: var(--color-white);
+}
+
+.loginButton:focus-visible,
+.signupButton:focus-visible {
+    outline: var(--space-3) solid var(--color-gray-400);
+    outline-offset: var(--space-2);
+}
+
+.logoutButton,
+.logoutButtonLoading {
+    color: var(--color-blue);
+    font-size: var(--font-size-md);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.logoutButtonLoading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.error {
+    color: var(--color-reject-file);
+    font-size: 0.9rem;
+}
