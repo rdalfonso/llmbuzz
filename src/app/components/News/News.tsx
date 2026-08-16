@@ -54,7 +54,6 @@ export default function News({
                                 {doc.snippet && (
                                     <p className={styles.snippet}>{doc.snippet}</p>
                                 )}
-                                <p> {doc.company && <span>{doc.company}</span>}</p>
                                 <div className={styles.meta}>
                                     {doc.source && <span>{doc.source}</span>}
                                     {doc.created_at && <span>{doc.created_at}</span>}

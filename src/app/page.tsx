@@ -13,9 +13,14 @@ interface SearchDocument {
   created_at?: string;
 }
 
-interface Aggregations {
+interface AggregationItem {
   key: string;
   count: number;
+}
+
+interface Aggregations {
+  by_model: AggregationItem[];
+  by_company: AggregationItem[];
 }
 
 
@@ -23,7 +28,7 @@ interface SearchResponse {
   total: number;
   count: number;
   documents: SearchDocument[];
-  aggregations: Aggregations[];
+  aggregations: Aggregations;
 }
 
 async function getInitialResults(): Promise<SearchResponse> {

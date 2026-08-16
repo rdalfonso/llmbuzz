@@ -11,7 +11,7 @@
 }
 
 .searchInput:focus {
-    padding-left: 16px;
+    padding-left: var(--space-16);
     font-size: 1rem;
     color: var(--color-gray-700);
 }
@@ -19,7 +19,7 @@
 .searchInput::placeholder {
     font-size: 1rem;
     color: var(--color-gray-600);
-    padding-left: 16px;
+    padding-left: var(--space-16);
     opacity: 1;
 }
 
