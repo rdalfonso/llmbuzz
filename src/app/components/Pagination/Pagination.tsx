@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./Pagination.module.css";
 
 interface PaginationProps {
@@ -17,5 +16,4 @@ export default function Pagination({
             Last week, we found <span className={styles.count}>{count}</span> result{count !== 1 ? "s" : ""}.
         </div >
     );
-
 }

@@ -98,8 +98,3 @@
     opacity: 0.6;
     pointer-events: none;
 }
-
-.error {
-    color: var(--color-reject-file);
-    font-size: 0.9rem;
-}

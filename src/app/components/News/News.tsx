@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import styles from "./News.module.css";
+import Search from '../Search/Search';
 import Pagination from "../Pagination/Pagination";
+import NewsHeader from "../NewsHeader/NewsHeader";
 
 interface SearchDocument {
     id: string;
@@ -33,11 +35,8 @@ export default function News({
     return (
         <div className={styles.container}>
             <>
-                <h2 className={styles.header}>Top stories for August 14th, 2026</h2>
-                <p className={styles.result}>
-                    {total} result{total !== 1 ? "s" : ""}
-                </p>
-
+                <Search term="" />
+                <NewsHeader count={total} headline="Top stories for August 14th, 2026" />
                 {documents.length === 0 ? (
                     <p className={styles.none}>No results found.</p>
                 ) : (

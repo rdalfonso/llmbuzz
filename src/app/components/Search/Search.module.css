@@ -1,0 +1,29 @@
+.search {
+    margin-bottom: 32px;
+}
+
+.searchInput {
+    height: 50px;
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid var(--color-gray-400);
+    border-radius: 24px;
+}
+
+.searchInput:focus {
+    padding-left: 16px;
+    font-size: 1rem;
+    color: var(--color-gray-700);
+}
+
+.searchInput::placeholder {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    padding-left: 16px;
+    opacity: 1;
+}
+
+.searchInput:focus-visible {
+    outline: var(--space-3) solid var(--color-blue-inline);
+    outline-offset: var(--space-1);
+}

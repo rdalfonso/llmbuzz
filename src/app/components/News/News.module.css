@@ -4,22 +4,6 @@
     padding: 1.5rem;
 }
 
-.header {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-.result {
-    font-size: 0.75rem;
-    color: var(--color-grey-result);
-    margin-bottom: 1rem;
-}
-
-.none {
-    font-size: 0.875rem;
-    color: var(--color-none-result);
-}
-
 .list {
     list-style: none;
     padding: 0;

@@ -3,21 +3,30 @@
 import { useState } from "react";
 import styles from "./NewsAggregations.module.css";
 
-interface Aggregations {
+
+interface AggregationBucket {
     key: string;
     count: number;
 }
 
+interface Aggregations {
+    by_model: AggregationBucket[];
+    by_company: AggregationBucket[];
+}
+
 interface NewsAggregationsProps {
-    initialAggregations?: Aggregations[];
+    initialAggregations?: Aggregations;
 }
 
 export default function NewsAggregations({
-    initialAggregations = [],
+    initialAggregations = { by_model: [], by_company: [] },
 }: NewsAggregationsProps) {
-    const [aggregations, _] = useState<Aggregations[]>(initialAggregations);
+    const [aggregations, _] = useState<Aggregations>(initialAggregations);
 
-    if (!aggregations || aggregations.length === 0) {
+    if (
+        !aggregations ||
+        (!aggregations.by_model.length && !aggregations.by_company.length)
+    ) {
         return (
             <div className={styles.container}>
                 <h2 className={styles.header}>Filter By</h2>
@@ -37,7 +46,7 @@ export default function NewsAggregations({
 
                 <p className={styles.section}>Companies</p>
                 <ul className={styles.list}>
-                    {companies?.map((agg: Aggregations) => (
+                    {companies?.map((agg: AggregationBucket) => (
                         <li key={agg.key} className={styles.listItem}>
                             <span className={styles.title}>{agg.key}</span>
                             <span className={styles.count}> ({agg.count})</span>
@@ -47,10 +56,10 @@ export default function NewsAggregations({
 
                 <p className={styles.section}>Models</p>
                 <ul className={styles.list}>
-                    {models?.map((agg: Aggregations) => (
+                    {models?.map((agg: AggregationBucket) => (
                         <li key={agg.key} className={styles.listItem}>
                             <span className={styles.title}>{agg.key}</span>
-                            <span className={styles.count}> ({agg.count})</span>
+                            <span className={styles.title}> ({agg.count})</span>
                         </li>
                     ))}
                 </ul>
