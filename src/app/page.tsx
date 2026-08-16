@@ -1,5 +1,6 @@
 import styles from './page.module.css';
 import News from './components/News/News';
+import NewsAggregations from './components/NewsAggregations/NewsAggregations';
 
 interface SearchDocument {
   id: string;
@@ -12,10 +13,17 @@ interface SearchDocument {
   created_at?: string;
 }
 
+interface Aggregations {
+  key: string;
+  count: number;
+}
+
+
 interface SearchResponse {
   total: number;
   count: number;
   documents: SearchDocument[];
+  aggregations: Aggregations[];
 }
 
 async function getInitialResults(): Promise<SearchResponse> {
@@ -25,7 +33,9 @@ async function getInitialResults(): Promise<SearchResponse> {
   });
 
   if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-  return res.json();
+  const data: SearchResponse = await res.json();
+  console.log("Initial results fetched:", data);
+  return data;
 }
 
 export default async function HomePage() {
@@ -34,10 +44,15 @@ export default async function HomePage() {
   return (
     <main className={styles.container}>
       <div className={styles.page}>
-        <News
-          initialDocuments={initialData.documents}
-          initialTotal={initialData.total}
-        />
+        <div className={styles.aggColumn}>
+          <NewsAggregations initialAggregations={initialData.aggregations} />
+        </div>
+        <div>
+          <News
+            initialDocuments={initialData.documents}
+            initialTotal={initialData.total}
+          />
+        </div>
       </div>
     </main>
   );

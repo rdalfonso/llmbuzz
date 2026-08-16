@@ -11,6 +11,10 @@
   width: 100%;
   max-width: 1320px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--space-20);
+}
+
+.aggColumn {
+  width: 200px;
 }

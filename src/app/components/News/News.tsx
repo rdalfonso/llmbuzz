@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./News.module.css";
+import Pagination from "../Pagination/Pagination";
 
 interface SearchDocument {
     id: string;
@@ -11,6 +12,7 @@ interface SearchDocument {
     source?: string;
     image?: string;
     model?: string;
+    company?: string;
     created_at?: string;
 }
 
@@ -53,6 +55,7 @@ export default function News({
                                 {doc.snippet && (
                                     <p className={styles.snippet}>{doc.snippet}</p>
                                 )}
+                                <p> {doc.company && <span>{doc.company}</span>}</p>
                                 <div className={styles.meta}>
                                     {doc.source && <span>{doc.source}</span>}
                                     {doc.created_at && <span>{doc.created_at}</span>}
@@ -62,6 +65,7 @@ export default function News({
                     </ul>
                 )}
             </>
+            <Pagination count={total} />
         </div>
     );
 }
